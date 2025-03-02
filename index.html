@@ -1,98 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Attendance Dashboard</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-    table, th, td {
-      border: 1px solid black;
-    }
-    th, td {
-      padding: 8px;
-      text-align: center;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-  <h1>Weekly Attendance Dashboard</h1>
+    <h1>Weekly Attendance Dashboard</h1>
 
-  <h2>Mark Attendance</h2>
-  <form id="attendance-form">
-    <label for="name">Name:</label>
-    <input type="text" id="name" required>
-    <label for="attended">Attended:</label>
-    <input type="checkbox" id="attended">
-    <button type="submit">Mark Attendance</button>
-  </form>
+    <h2>Mark Attendance</h2>
+    <form id="attendance-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+        <label for="attended">Attended:</label>
+        <input type="checkbox" id="attended">
+        <button type="submit">Mark Attendance</button>
+    </form>
 
-  <h2>Attendance Records</h2>
-  <table id="attendance-table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Total Sessions</th>
-        <th>Sessions Attended</th>
-        <th>Attendance %</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Attendance records will go here -->
-    </tbody>
-  </table>
+    <h2>Attendance Records</h2>
+    <table id="attendance-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Total Sessions</th>
+                <th>Sessions Attended</th>
+                <th>Attendance %</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Attendance records will go here -->
+        </tbody>
+    </table>
 
-  <script>
-    // Mock data to simulate fetching from the backend
-    const mockData = [
-      { name: "John Doe", total_attendance: 10, attended_sessions: 8 },
-      { name: "Jane Smith", total_attendance: 12, attended_sessions: 10 },
-      { name: "Alice Johnson", total_attendance: 8, attended_sessions: 6 }
-    ];
+    <script>
+        // Fetch attendance data from Firebase
+        function fetchAttendance() {
+            fetch('https://your-glitch-backend-url/getAttendance')
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.querySelector('#attendance-table tbody');
+                    tableBody.innerHTML = '';
+                    data.forEach(row => {
+                        const attendancePercentage = ((row.attended_sessions / row.total_attendance) * 100).toFixed(2);
+                        const rowElement = document.createElement('tr');
+                        rowElement.innerHTML = `
+                            <td>${row.name}</td>
+                            <td>${row.total_attendance}</td>
+                            <td>${row.attended_sessions}</td>
+                            <td>${attendancePercentage}%</td>
+                        `;
+                        tableBody.appendChild(rowElement);
+                    });
+                });
+        }
 
-    // Function to display mock attendance data
-    function displayAttendance() {
-      const tableBody = document.querySelector('#attendance-table tbody');
-      tableBody.innerHTML = '';
-      mockData.forEach(row => {
-        const attendancePercentage = ((row.attended_sessions / row.total_attendance) * 100).toFixed(2);
-        const rowElement = document.createElement('tr');
-        rowElement.innerHTML = `
-          <td>${row.name}</td>
-          <td>${row.total_attendance}</td>
-          <td>${row.attended_sessions}</td>
-          <td>${attendancePercentage}%</td>
-        `;
-        tableBody.appendChild(rowElement);
-      });
-    }
+        // Submit attendance form
+        document.getElementById('attendance-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const attended = document.getElementById('attended').checked;
 
-    // Submit attendance form (for now, just update mock data)
-    document.getElementById('attendance-form').addEventListener('submit', function(event) {
-      event.preventDefault();
-      const name = document.getElementById('name').value;
-      const attended = document.getElementById('attended').checked;
+            fetch('https://your-glitch-backend-url/markAttendance', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, attended })
+            }).then(() => {
+                fetchAttendance();  // Refresh attendance table
+            });
+        });
 
-      // Mock adding a new attendance record
-      mockData.push({
-        name,
-        total_attendance: 1,  // Assuming just 1 session for now
-        attended_sessions: attended ? 1 : 0
-      });
-
-      displayAttendance();  // Refresh attendance table
-    });
-
-    // Initially display mock data
-    displayAttendance();
-  </script>
+        // Fetch data on page load
+        fetchAttendance();
+    </script>
 </body>
 </html>
