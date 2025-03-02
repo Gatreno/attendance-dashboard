@@ -1,110 +1,98 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.4">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    table, th, td {
+      border: 1px solid black;
+    }
+    th, td {
+      padding: 8px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Attendance Dashboard&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-family: Arial, sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>table {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-collapse: collapse;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>table, th, td {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid black;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>th, td {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h1&gt;Weekly Attendance Dashboard&lt;/h1&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Mark Attendance&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;form id="attendance-form"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;label for="name"&gt;Name:&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="text" id="name" required&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;label for="attended"&gt;Attended:&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="checkbox" id="attended"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;button type="submit"&gt;Mark Attendance&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/form&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Attendance Records&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;table id="attendance-table"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;thead&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;th&gt;Name&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;th&gt;Total Sessions&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;th&gt;Sessions Attended&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;th&gt;Attendance %&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/thead&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;tbody&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Attendance records will go here --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/tbody&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/table&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Fetch attendance data from Firebase</p>
-<p class="p1"><span class="Apple-converted-space">        </span>function fetchAttendance() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>fetch('https://your-glitch-backend-url/getAttendance')</p>
-<p class="p1"><span class="Apple-converted-space">                </span>.then(response =&gt; response.json())</p>
-<p class="p1"><span class="Apple-converted-space">                </span>.then(data =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const tableBody = document.querySelector('#attendance-table tbody');</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>tableBody.innerHTML = '';</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>data.forEach(row =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>const attendancePercentage = ((row.attended_sessions / row.total_attendance) * 100).toFixed(2);</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>const rowElement = document.createElement('tr');</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>rowElement.innerHTML = `</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;${row.name}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;${row.total_attendance}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;${row.attended_sessions}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;td&gt;${attendancePercentage}%&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>`;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>tableBody.appendChild(rowElement);</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>});</p>
-<p class="p1"><span class="Apple-converted-space">                </span>});</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Submit attendance form</p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('attendance-form').addEventListener('submit', function(event) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>event.preventDefault();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const name = document.getElementById('name').value;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const attended = document.getElementById('attended').checked;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>fetch('https://your-glitch-backend-url/markAttendance', {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>method: 'POST',</p>
-<p class="p1"><span class="Apple-converted-space">                </span>headers: { 'Content-Type': 'application/json' },</p>
-<p class="p1"><span class="Apple-converted-space">                </span>body: JSON.stringify({ name, attended })</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}).then(() =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>fetchAttendance();<span class="Apple-converted-space">  </span>// Refresh attendance table</p>
-<p class="p1"><span class="Apple-converted-space">            </span>});</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Fetch data on page load</p>
-<p class="p1"><span class="Apple-converted-space">        </span>fetchAttendance();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+  <h1>Weekly Attendance Dashboard</h1>
+
+  <h2>Mark Attendance</h2>
+  <form id="attendance-form">
+    <label for="name">Name:</label>
+    <input type="text" id="name" required>
+    <label for="attended">Attended:</label>
+    <input type="checkbox" id="attended">
+    <button type="submit">Mark Attendance</button>
+  </form>
+
+  <h2>Attendance Records</h2>
+  <table id="attendance-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Total Sessions</th>
+        <th>Sessions Attended</th>
+        <th>Attendance %</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Attendance records will go here -->
+    </tbody>
+  </table>
+
+  <script>
+    // Mock data to simulate fetching from the backend
+    const mockData = [
+      { name: "John Doe", total_attendance: 10, attended_sessions: 8 },
+      { name: "Jane Smith", total_attendance: 12, attended_sessions: 10 },
+      { name: "Alice Johnson", total_attendance: 8, attended_sessions: 6 }
+    ];
+
+    // Function to display mock attendance data
+    function displayAttendance() {
+      const tableBody = document.querySelector('#attendance-table tbody');
+      tableBody.innerHTML = '';
+      mockData.forEach(row => {
+        const attendancePercentage = ((row.attended_sessions / row.total_attendance) * 100).toFixed(2);
+        const rowElement = document.createElement('tr');
+        rowElement.innerHTML = `
+          <td>${row.name}</td>
+          <td>${row.total_attendance}</td>
+          <td>${row.attended_sessions}</td>
+          <td>${attendancePercentage}%</td>
+        `;
+        tableBody.appendChild(rowElement);
+      });
+    }
+
+    // Submit attendance form (for now, just update mock data)
+    document.getElementById('attendance-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const name = document.getElementById('name').value;
+      const attended = document.getElementById('attended').checked;
+
+      // Mock adding a new attendance record
+      mockData.push({
+        name,
+        total_attendance: 1,  // Assuming just 1 session for now
+        attended_sessions: attended ? 1 : 0
+      });
+
+      displayAttendance();  // Refresh attendance table
+    });
+
+    // Initially display mock data
+    displayAttendance();
+  </script>
 </body>
 </html>
